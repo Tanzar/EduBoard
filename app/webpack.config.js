@@ -71,6 +71,12 @@ Encore
 
     // uncomment if you're having problems with a jQuery plugin
     //.autoProvidejQuery()
+
+    .copyFiles({
+        from: './assets/images',
+        to: 'images/[path][name].[hash:8].[ext]',
+        pattern: /\.(png|jpg}jpeg)$/
+    })
 ;
 
 // Use polling instead of inotify, changes in files should now be applied immedietely
