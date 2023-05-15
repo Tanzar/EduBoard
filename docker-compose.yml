@@ -1,0 +1,116 @@
+version: "3.8"
+
+networks:
+  eduboard-network:
+
+volumes:
+  mysqldata:
+  app-files:
+
+services:
+  
+  # Web server - NGINX
+  web:
+    container_name: web
+    build:
+      dockerfile: ./docker/nginx/Dockerfile
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    networks:
+      - eduboard-network
+    volumes:
+      - app-files:/var/www/html
+    depends_on:
+      - app
+
+  # Database - MySQL
+  db:
+    container_name: db
+    build: 
+      dockerfile: ./docker/mysql/Dockerfile
+    restart: unless-stopped
+    networks:
+      - eduboard-network
+    volumes:
+      - mysqldata:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${MYSQL_APP_USER}
+      MYSQL_PASSWORD: ${MYSQL_APP_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      TZ: ${TIMEZONE}
+  
+  #App - PHP
+  app:
+    container_name: app
+    build: 
+      dockerfile: ./docker/php/Dockerfile
+      target: app_prod
+    restart: unless-stopped
+    networks:
+      - eduboard-network
+    volumes:
+      - ./archives:/archives
+      - app-files:/var/www/html
+    environment:
+      MYSQL_HOST: db
+      MYSQL_PORT: ${MYSQL_PORT}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_APP_USER}
+      MYSQL_PASSWORD: ${MYSQL_APP_PASSWORD}
+      REDIS_HOST: cache
+      REDIS_PORT: ${REDIS_PORT}
+      TZ: ${TIMEZONE}
+
+  # Cache - Redis
+  cache:
+    container_name: cache
+    image: redis:latest
+    restart: unless-stopped
+    networks:
+      - eduboard-network
+    depends_on:
+      - app
+
+  #PHPMyAdmin
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin/phpmyadmin
+    restart: unless-stopped
+    ports:
+      - "8085:80"
+    networks:
+      - eduboard-network
+    environment:
+      PMA_HOST: db
+      PMA_PORT: ${MYSQL_PORT}
+      PMA_ARBITRARY: 1
+      UPLOAD_LIMIT: 1024M
+      MEMORY_LIMIT: 1024M
+      MAX_EXECUTION_TIME: 300
+    depends_on:
+      - db
+      - web
+      
+  #Backup
+  backup:
+    container_name: backup
+    image: fradelg/mysql-cron-backup
+    restart: unless-stopped
+    networks:
+      - eduboard-network
+    volumes:
+      - ./backups:/backup
+    environment:
+      MYSQL_HOST: db
+      MYSQL_PORT: ${MYSQL_PORT}
+      MYSQL_USER: root
+      MYSQL_PASS: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DB: ${MYSQL_DATABASE}
+      MAX_BACKUPS: ${BACKUPS_LIMIT}
+      INIT_BACKUP: 0
+      CRON_TIME: ${BACKUPS_CROND}
+      TZ: ${TIMEZONE}
+    depends_on:
+      - db
