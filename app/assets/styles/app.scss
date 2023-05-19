@@ -1,10 +1,296 @@
-$body-color: rgb(79, 250, 144);
-$p-color: rgb(255, 255, 255);
+@use "global" as *;
+
+/* =============
+    General
+   =============*/
+
+$default-text-color: rgb(0, 0, 0);
+$body-color: rgb(95, 210, 255);
+
+$navigation-background-color: rgb(247, 247, 247);
+$navigation-border-color: rgb(207, 207, 207);
+
+$nav-link-color: rgb(0, 89, 255);
+$nav-link-color-alt: rgb(35, 193, 255);
+
+$login-button-color: rgb(0, 89, 255);
+$login-button-color-alt: rgb(255, 255, 255);
+
+$dialog-background-color: rgb(247, 247, 247);
+$dialog-border-color: rgb(35, 193, 255);
+
+$login-form-background: rgb(247, 247, 247);
+$login-form-border-color: rgb(170, 170, 170);
+
+html {
+    font-size: 18px;
+    color: $default-text-color;
+    margin: 0;
+}
 
 body {
-    background-color: $body-color
+    background-color: $body-color;
+    margin: 0;
+    padding: 0;
 }
 
-p {
-    color: $p-color;
+/* =============
+    Typography
+   =============*/
+
+.nav-page-link {
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    color: $nav-link-color;
 }
+
+.nav-username-display,
+.nav-login-button {
+    font-size: 0.7rem;
+    font-family: 'Courier New', monospace;
+    font-weight: 700;
+    text-decoration: none;
+    color: $default-text-color;
+}
+
+.basic-dialog-title {
+    font-size: 1rem;
+    font-family: 'Times New Roman', serif;
+}
+
+.basic-dialog-close {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.basic-dialog-body {
+    font-size: 0.7rem;
+    font-family: 'Courier New', monospace;
+}
+
+.basic-dialog-footer {
+    font-size: 0.7rem;
+    font-family: 'Courier New', monospace;
+}
+
+/* =============
+    Layout
+   =============*/
+
+//=== General ===//
+
+//=== Navigation ===//
+
+.navigation {
+    background-color: $navigation-background-color;
+    border-bottom: 1px solid $navigation-border-color;
+    margin-bottom: 2rem;
+}
+
+.nav-flex {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+@media (min-width: $screen-break-small-medium) {
+    .nav-flex {
+        flex-direction: row;
+    }
+}
+
+//=== Navigation, Icon / Logo ===//
+
+.base-nav-icon {
+    display: block;
+    object-fit: scale-down;
+    max-width: 100%;
+    max-height: 100px;
+}
+
+.nav-icon-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid $navigation-border-color;
+}
+
+@media (min-width: $screen-break-small-medium) {
+    .nav-icon-wrapper {
+        width: 300px;
+        min-width: 300px;
+        border-right: 1px solid $navigation-border-color;
+        border-bottom: 1px solid transparent;
+    }
+}
+
+//=== Navigation, links to pages ===//
+
+.nav-pages {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    max-width: 700px;
+}
+
+@media (min-width: $screen-break-medium-large) {
+    .nav-pages {
+        flex-direction: row;
+    }
+}
+
+.nav-page-link-wrapper {
+    margin: 0.2rem;
+    text-align: center;
+}
+
+@media (min-width: $screen-break-medium-large) {
+    .nav-page-link-wrapper {
+        margin: 0.5rem;
+    }
+}
+
+.nav-page-link {
+    border-bottom: 1px solid transparent;
+}
+
+.nav-page-link:hover,
+.nav-page-link:focus {
+    outline: none;
+    color:$nav-link-color-alt;
+    border-bottom: 1px solid $nav-link-color-alt;
+}
+
+//=== Navigation, username and login button ===//
+
+.nav-login {
+    min-width: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-top: 1px solid $navigation-border-color;
+}
+
+@media (min-width: $screen-break-small-medium) {
+    .nav-login {
+        width: fit-content;
+        border-left: 1px solid $navigation-border-color;
+        border-top: 1px solid transparent;
+    }
+}
+
+.nav-username-display {
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.nav-login-button {
+    margin: 0.3rem;
+    background-color: $navigation-background-color;
+    border: 2px solid $login-button-color;
+    border-radius: 5px;
+    padding: 0.3rem;
+    color: $login-button-color;
+}
+
+.nav-login-button:hover,
+.nav-login-button:focus {
+    outline: none;
+    background-color: $login-button-color;
+    color: $login-button-color-alt;
+}
+
+.nav-login-button:hover {
+    cursor: pointer;
+}
+
+//=== Dialog ===//
+
+.basic-dialog {
+    border: 3px solid $dialog-border-color;
+    background-color: $dialog-background-color;
+    border-radius: 10px;
+    max-width: 60%;
+    width: fit-content;
+    padding: 0px;
+}
+
+@media (min-width: $screen-break-small-medium) {
+    .basic-dialog {
+        max-width: 300px;
+    }
+}
+
+@media (min-width: $screen-break-medium-large) {
+    .basic-dialog {
+        min-width: 300px;
+        max-width: 700px;
+    }
+}
+
+.basic-dialog-header {
+    min-height: 2rem;
+    border-bottom: 1px solid $dialog-border-color;
+    padding: 5px;
+}
+
+.basic-dialog-close {
+    color: rgb(255, 133, 133);
+    float: right;
+}
+
+.basic-dialog-close:hover,
+.basic-dialog-close:focus {
+    cursor: pointer;
+    text-decoration: none;
+    color: red;
+}
+
+.basic-dialog-body {
+    padding: 0.5rem;
+}
+
+.basic-dialog-footer {
+    min-height: 2rem;
+    border-top: 1px solid $dialog-border-color;
+    padding: 5px;
+}
+
+//=== Login form ===//
+
+.login-form {
+    background-color: $login-form-background;
+    border: 3px solid $login-form-border-color;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-form h1,
+.login-form div,
+.login-form input {
+    margin: 0.3rem;
+}
+
+.login-form input {
+    outline: none;
+    border: 3px solid transparent;
+    border-bottom: 3px solid $login-form-border-color;
+    background-color: transparent;
+}
+
+.login-form input:hover,
+.login-form input:focus {
+    border: 3px solid $login-form-border-color;
+    border-radius: 4px;
+}
+
+//=== Footer ===//
+

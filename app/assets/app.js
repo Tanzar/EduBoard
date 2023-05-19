@@ -10,3 +10,8 @@ import './styles/app.scss';
 
 // start the Stimulus application
 import './bootstrap';
+
+import $ from 'jquery';
+
+import { DialogBox } from './scripts/elements/dialog.js';
+

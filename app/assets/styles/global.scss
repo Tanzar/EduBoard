@@ -1,0 +1,15 @@
+/* =========
+    Global values and clsses, should be used in every scss file
+========= */
+
+
+$screen-break-medium-large: 900px;
+$screen-break-small-medium: 600px;
+
+
+.container {
+    width: 95%;
+    max-width: 1300px;
+    padding: 0;
+    margin: 0 auto;
+}

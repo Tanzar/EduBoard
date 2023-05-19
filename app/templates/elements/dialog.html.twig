@@ -1,0 +1,14 @@
+<dialog  class="basic-dialog" id="{{ id }}">
+    <header class="basic-dialog-header">
+        <span id="{{ id }}-close" class="basic-dialog-close">&times;</span>
+        <h2 class="basic-dialog-title">{{ title }}</h2>
+    </header>
+    <div class="basic-dialog-body">
+        {% block dialog_body %}
+            Hello there, edit block dialog_body to change contents in here
+        {% endblock %}
+    </div>
+    <footer class="basic-dialog-footer">
+        {% block dialog_footer %}{% endblock %}
+    </footer>
+</dialog>

@@ -1,5 +1,49 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('index') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('index') }}
+{% endblock %}
+
 {% block body %}
-    <p>Hello there</p>
+    <main class="container">
+        <div class="news-display">
+            <div class="featured-news">
+                <div>
+                    <a class="featured-news-header" href="">Jakiś tytuł</a>
+                    <p class="featured-news-info">Data: 12.03.2023 r., Autor: Janusz Brzeczyszczykiewicz</p>
+                </div>
+                <div class="featured-news-details">
+                    <img class="featured-news-image" src="{{ asset('build/images/not_found.64b8be1d.png')}}" alt="">
+                    <p class="featured-news-text">
+                    Use precise geolocation data. Actively scan device characteristics for identification. 
+                    Select personalised content. Develop and improve products. Select personalised ads. 
+                    Select basic ads. Measure ad performance. Apply market research to generate audience insights. 
+                    Measure content performance. Store and/or access information on a device. Create a personalised ads profile. 
+                    Create a personalised content profile.
+                    </p>
+                </div>
+            </div>
+            <div class="older-news-container">
+                <div class="older-news">
+                    <a class="older-news-title" href="">Był sobie tytuł</a>
+                    <img class="older-news-image" src="{{ asset('build/images/not_found.64b8be1d.png')}}" alt="">
+                </div>
+                <div class="older-news">
+                    <a class="older-news-title" href="">Był sobie inny tytuł</a>
+                    <img class="older-news-image" src="{{ asset('build/images/not_found.64b8be1d.png')}}" alt="">
+                </div>
+                <div class="older-news">
+                    <a class="older-news-title" href="">To jest tytuł</a>
+                    <img class="older-news-image" src="{{ asset('build/images/not_found.64b8be1d.png')}}" alt="">
+                </div>
+                <a class="older-news-more" href="">More news</a>
+            </div>
+        </div>
+    </main>
 {% endblock %}
