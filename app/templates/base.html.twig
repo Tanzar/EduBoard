@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- For ensuring page looks same (or at least simmillar) on all devices -->
         <meta name="author" content="Grzegorz Spakowski">
-        <title>{% block title %}{{title_default}}{% endblock %}</title>
+        <title>{% block title %}{{ title_default }}{% endblock %}</title>
         <link rel="icon" style="border-radius: 10px" href="{{ asset('build/images/board.b78c7710.png')}}">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
@@ -19,23 +19,25 @@
         <nav class="navigation">
             <div class="nav-flex">
                 <div class="nav-icon-wrapper">
-                    <img class="base-nav-icon" src="{{ asset('build/images/board.b78c7710.png')}}" alt="">
+                    <a href="{{ path("index") }}">
+                        <img class="base-nav-icon" src="{{ asset('build/images/board.b78c7710.png')}}" alt="">
+                    </a>
                 </div>
                 <div class="nav-pages">
                     <div class="nav-page-link-wrapper">
                         <a class="nav-page-link" href="{{ path('index') }}">Home</a>
                     </div>
                     <div class="nav-page-link-wrapper">
-                        <a class="nav-page-link" href="">Schedule</a>
+                        <a class="nav-page-link" href="{{ path('schedule') }}">Schedule</a>
                     </div>
                     <div class="nav-page-link-wrapper">
-                        <a class="nav-page-link" href="">Messenger</a>
+                        <a class="nav-page-link" href="{{ path('messenger') }}">Messenger</a>
                     </div>
                     <div class="nav-page-link-wrapper">
-                        <a class="nav-page-link" href="">Classroom</a>
+                        <a class="nav-page-link" href="{{ path('classroom') }}">Classroom</a>
                     </div>
                     <div class="nav-page-link-wrapper">
-                        <a class="nav-page-link" href="">Admin</a>
+                        <a class="nav-page-link" href="{{ path('admin') }}">Admin</a>
                     </div>
                 </div>
                 <div class="nav-login">

@@ -31,6 +31,9 @@ RUN curl -sS https://get.symfony.com/cli/installer | bash \
 # Install NPM
 RUN apk --no-cache add nodejs npm yarn
 
+RUN echo http://dl-2.alpinelinux.org/alpine/edge/community/ >> /etc/apk/repositories
+RUN apk --no-cache add shadow && usermod -u 1000 www-data
+
 # Production build
 FROM app as app_prod
 
@@ -60,3 +63,4 @@ ENV XDEBUG_MODE=debug
 RUN set -eux; \
 	install-php-extensions xdebug
 
+RUN chmod -R 777 /var/www/html
