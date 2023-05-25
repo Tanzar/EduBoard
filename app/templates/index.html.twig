@@ -45,5 +45,9 @@
                 <a class="older-news-more" href="">More news</a>
             </div>
         </div>
+        <form action="{{ path('test') }}" method="post" enctype="multipart/form-data">
+            <input type="file" name="plik" id="plik">
+            <input type="submit" value="Wyślij">
+        </form>
     </main>
 {% endblock %}

@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Controller;
+
+use App\Uploaders\FileUploader;
+use App\Uploaders\ImageUploader;
 use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -30,10 +33,17 @@ class IndexController extends AbstractController {
 
     #[Route('/test', name: 'test')]
     public function test() {
+
         return new JsonResponse([
-            'gid' => getmygid(),
-            'yid' => getmyuid(),
-            'name' => posix_getpwuid(posix_geteuid())['name']
+            'path' => exec('whoami')
+        ]);
+    }
+
+    #[Route('/testuje', name: 'test')]
+    public function testuje() {
+
+        return new JsonResponse([
+            'path' => exec('whoami')
         ]);
     }
 }

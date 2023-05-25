@@ -32,7 +32,10 @@ RUN curl -sS https://get.symfony.com/cli/installer | bash \
 RUN apk --no-cache add nodejs npm yarn
 
 RUN echo http://dl-2.alpinelinux.org/alpine/edge/community/ >> /etc/apk/repositories
-RUN apk --no-cache add shadow && usermod -u 1000 www-data
+RUN apk --no-cache add shadow
+
+RUN usermod -u 1000 www-data
+RUN usermod -G 0 www-data
 
 # Production build
 FROM app as app_prod
@@ -50,7 +53,7 @@ RUN composer dump-autoload --optimize
 
 RUN yarn run build
 
-RUN chmod -R 777 /var/www/html
+#RUN chmod -R 777 /var/www/html
 
 # Dev elements
 FROM app as app_dev
@@ -63,4 +66,4 @@ ENV XDEBUG_MODE=debug
 RUN set -eux; \
 	install-php-extensions xdebug
 
-RUN chmod -R 777 /var/www/html
+#RUN chmod -R 777 /var/www/html

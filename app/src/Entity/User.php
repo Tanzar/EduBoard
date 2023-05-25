@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -27,6 +29,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     private ?string $password = null;
+
+    #[ORM\Column(length: 100)]
+    private ?string $name = null;
+
+    #[ORM\Column(length: 100)]
+    private ?string $surname = null;
+
+    #[ORM\Column(length: 15)]
+    private string $phone = '';
+
+    #[ORM\Column(length: 255)]
+    private string $address = '';
+
+    #[ORM\OneToMany(mappedBy: 'author', targetEntity: Article::class, orphanRemoval: true)]
+    private Collection $articles;
+
+    public function __construct()
+    {
+        $this->articles = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -96,5 +118,67 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getName() : string {
+        return $this->name;
+    }
+
+    public function setName(string $name) : void {
+        $this->name = substr($name, 0, 100);
+    }
+    
+    public function getSurname() : string {
+        return $this->surname;
+    }
+
+    public function setSurname(string $surname) : void {
+        $this->surname = substr($surname, 0, 100);
+    }
+
+    public function getPhone() : string {
+        return $this->phone;
+    }
+
+    public function setPhone(string $phone) : void {
+        $this->phone = substr($phone, 0, 15);
+    }
+
+    public function getAddress() : string {
+        return $this->address;
+    }
+
+    public function setAddress(string $address) : void {
+        $this->address = $address;
+    }
+
+    /**
+     * @return Collection<int, Article>
+     */
+    public function getArticles(): Collection
+    {
+        return $this->articles;
+    }
+
+    public function addArticle(Article $article): self
+    {
+        if (!$this->articles->contains($article)) {
+            $this->articles->add($article);
+            $article->setAuthor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArticle(Article $article): self
+    {
+        if ($this->articles->removeElement($article)) {
+            // set the owning side to null (unless already changed)
+            if ($article->getAuthor() === $this) {
+                $article->setAuthor(null);
+            }
+        }
+
+        return $this;
     }
 }

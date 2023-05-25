@@ -41,7 +41,12 @@
                     </div>
                 </div>
                 <div class="nav-login">
-                    <div class="nav-username-display">{{ app.user.email ?? '' }}</div>
+                    {% if app.user %}
+                        <div class="nav-username-display">{{ "#{app.user.name} #{app.user.surname}" }}</div>
+                    {% else %}
+                        <div class="nav-username-display"></div>
+                    {% endif %}
+                    
                     <a href="{{ path('app_login') }}" id="login-button" class="nav-login-button">Login / Logout</a>
                 </div>
             </div>
