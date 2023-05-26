@@ -4,12 +4,17 @@
     General
    =============*/
 
+$display-color: rgb(245, 245, 245);
+$border-color: rgb(165, 165, 165);
+$border-color-alt: rgb(255, 255, 255);
+$border-width: 3px;
+
 $news-title-color: rgb(0, 89, 255);
 $news-title-color-alt: rgb(35, 193, 255);
-$news-dispaly-color: rgb(245, 245, 245);
-$news-border-color: rgb(165, 165, 165);
-$news-border-color-alt: rgb(255, 255, 255);
-$news-border-width: 3px;
+
+$gallery-title-color: rgb(0, 89, 255);
+$album-title-color: rgb(0, 89, 255);
+$album-title-color-alt: rgb(35, 193, 255);
 
 /* =============
     Typography
@@ -43,19 +48,49 @@ $news-border-width: 3px;
     font-size: 1.2rem;
     font-family: 'Courier New', monospace;
     font-weight: 700;
-    color: $news-border-color;
+    color: $border-color;
     text-decoration: none;
+}
+
+.gallery-title {
+    font-family: 'Times New Roman', serif;
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: $gallery-title-color;
+}
+
+.gallery-title:hover,
+.gallery-title:focus {
+    outline: none;
+    color: $album-title-color-alt;
+}
+
+.album-title {
+    font-family: 'Times New Roman', serif;
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: $album-title-color;
+    border-bottom: 1px solid $album-title-color;
+}
+
+.album-title:hover,
+.album-title:focus {
+    outline: none;
+    color: $album-title-color-alt;
+    border-bottom: 1px solid $album-title-color-alt;
 }
    
 /* =============
     Layout
    =============*/
 
+//=== News ===//
+
 .news-display {
-    background-color:$news-dispaly-color;
+    background-color:$display-color;
     display: flex;
     flex-direction: column;
-    border: $news-border-width solid $news-border-color;
+    border: $border-width solid $border-color;
     margin-bottom: 2rem;
     min-height: 500px;
 }
@@ -70,14 +105,14 @@ $news-border-width: 3px;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     margin-bottom: 1rem;
-    border-bottom: $news-border-width solid $news-border-color;
+    border-bottom: $border-width solid $border-color;
 }
    
 @media (min-width: $screen-break-medium-large) {
     .featured-news {
         margin-bottom: 0;
         border-bottom: none;
-        border-right: $news-border-width solid $news-border-color;;
+        border-right: $border-width solid $border-color;;
     }
 }
 
@@ -152,12 +187,80 @@ $news-border-width: 3px;
 .older-news-more {
     padding: 0.5rem;
     text-align: center;
-    border-top: $news-border-width solid $news-border-color;
+    border-top: $border-width solid $border-color;
 }
 
 .older-news-more:hover,
 .older-news-more:focus {
     outline: none;
-    color: $news-border-color-alt;
-    background-color: $news-border-color;
+    color: $border-color-alt;
+    background-color: $border-color;
+}
+
+//=== Gallery ===//
+
+.gallery-display {
+    background-color:$display-color;
+    display: flex;
+    flex-direction: column;
+    border: $border-width solid $border-color;
+    margin-bottom: 2rem;
+    min-height: 300px;
+}
+
+.gallery-title {
+    margin: 0;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+    text-align: center;
+    border-bottom: $border-width solid $border-color;
+}
+
+.gallery-albums-container {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: $screen-break-medium-large) {
+    .gallery-albums-container {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+.gallery-album {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+@media (min-width: $screen-break-medium-large) {
+    .gallery-album {
+        max-width: 30%;
+    }
+}
+
+.gallery-album:last-child {
+    margin-bottom: 0rem;
+}
+
+.album-title {
+    margin-bottom: 0.5rem;
+    width: fit-content;
+}
+
+.album-front-image {
+    min-width: 100%;
+    max-height: 100px;
+    object-fit: cover;
+}
+
+@media (min-width: $screen-break-medium-large) {
+    .album-front-image {
+        max-width: 100%;
+        max-height: none;
+        object-fit: scale-down;
+    }
 }

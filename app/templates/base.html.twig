@@ -54,5 +54,23 @@
         <div class="container">
             {% block body %}{% endblock %}
         </div>
+        <footer class="app-footer">
+            <div class="footer-element">
+                <img class="footer-icon" src="{{ asset('build/images/school_icon.649f9bf1.png')}}" alt="Address: ">
+                <div class="footer-text">{{ school_address }}</div>
+            </div>
+            <div class="footer-element">
+                <img class="footer-icon" src="{{ asset('build/images/phone_icon.23176dfc.png')}}" alt="Phone: ">
+                <a href="tel:{{ school_email }}" class="footer-text">{{ school_telephone }}</a>
+            </div>
+            <div class="footer-element">
+                <img class="footer-icon" src="{{ asset('build/images/mail_icon.e80e6df0.png')}}" alt="Email: ">
+                <a href="mailto:{{ school_email }}" class="footer-text">{{ school_email }}</a>
+            </div>
+            <div class="footer-element">
+                <img class="footer-icon" src="{{ asset('build/images/clock_icon.42a42dca.png')}}" alt="Time: ">
+                <div class="footer-text">{{ school_working_hours }}</div>
+            </div>
+        </footer>
     </body>
 </html>

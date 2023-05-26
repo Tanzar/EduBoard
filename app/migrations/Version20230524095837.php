@@ -30,7 +30,6 @@ final class Version20230524095837 extends AbstractMigration
         $this->addSql('ALTER TABLE article_tags ADD CONSTRAINT FK_DFFE13278D7B4FB4 FOREIGN KEY (tags_id) REFERENCES tags (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE article_news_images ADD CONSTRAINT FK_F63517797294869C FOREIGN KEY (article_id) REFERENCES article (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE article_news_images ADD CONSTRAINT FK_F6351779C86A5A24 FOREIGN KEY (news_images_id) REFERENCES news_images (id) ON DELETE CASCADE');
-        $this->addSql('ALTER TABLE user ADD phone VARCHAR(15) NOT NULL, ADD address VARCHAR(255) NOT NULL');
     }
 
     public function down(Schema $schema): void
@@ -46,6 +45,5 @@ final class Version20230524095837 extends AbstractMigration
         $this->addSql('DROP TABLE article_news_images');
         $this->addSql('DROP TABLE news_images');
         $this->addSql('DROP TABLE tags');
-        $this->addSql('ALTER TABLE `user` DROP phone, DROP address');
     }
 }

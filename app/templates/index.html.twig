@@ -45,9 +45,22 @@
                 <a class="older-news-more" href="">More news</a>
             </div>
         </div>
-        <form action="{{ path('test') }}" method="post" enctype="multipart/form-data">
-            <input type="file" name="plik" id="plik">
-            <input type="submit" value="Wyślij">
-        </form>
+        <div class="gallery-display">
+            <a href="" class="gallery-title">Galeria</a>
+            <div class="gallery-albums-container">
+                <div class="gallery-album">
+                    <a href="" class="album-title">Ogólne</a>
+                    <img class="album-front-image" src="{{ asset('build/images/not_found.64b8be1d.png')}}" alt="">
+                </div>
+                <div class="gallery-album">
+                    <a href="" class="album-title">Wycieczka</a>
+                    <img class="album-front-image" src="{{ asset('build/images/not_found.64b8be1d.png')}}" alt="">
+                </div>
+                <div class="gallery-album">
+                    <a href="" class="album-title">Konkurs</a>
+                    <img class="album-front-image" src="{{ asset('build/images/not_found.64b8be1d.png')}}" alt="">
+                </div>
+            </div>
+        </div>
     </main>
 {% endblock %}

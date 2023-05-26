@@ -2,6 +2,10 @@ twig:
     default_path: '%kernel.project_dir%/templates'
     globals:
         title_default: "EduBoard"
+        school_address: "%env(SCHOOL_ADDRESS)%"
+        school_telephone: "%env(SCHOOL_TELEPHONE)%"
+        school_email: "%env(SCHOOL_EMAIL)%"
+        school_working_hours: "%env(SCHOOL_WORKING_HOURS)%"
 
 when@test:
     twig:
