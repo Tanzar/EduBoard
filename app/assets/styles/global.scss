@@ -1,7 +1,28 @@
 /* =========
     Global values and clsses, should be used in every scss file
+    add line -  @use "global" as *;  - ate start of every scss
 ========= */
 
+$default-text-color: rgb(0, 0, 0);
+$body-color: rgb(95, 210, 255);
+
+$element-background-color: rgb(247, 247, 247);
+$element-border-color: rgb(207, 207, 207);
+
+$default-link-color: rgb(0, 89, 255);
+$default-link-color-alt: rgb(35, 193, 255);
+
+$default-button-color: rgb(0, 89, 255);
+$default-button-color-alt: rgb(255, 255, 255);
+
+$default-table-border-color: rgb(0, 140, 221);
+$default-table-row-color: rgb(162, 229, 255);
+$default-table-row-color-alt: rgb(117, 216, 255);
+$default-table-row-color-highlight: rgb(224, 224, 224);
+
+
+$dialog-background-color: rgb(247, 247, 247);
+$dialog-border-color: rgb(35, 193, 255);
 
 $screen-break-medium-large: 900px;
 $screen-break-small-medium: 600px;
@@ -12,4 +33,132 @@ $screen-break-small-medium: 600px;
     max-width: 1300px;
     padding: 0;
     margin: 0 auto;
+}
+
+.styled-container {
+    width: 95%;
+    max-width: 1300px;
+    padding: 0;
+    margin: 0 auto;
+    background-color: $element-background-color;
+    border: 2px solid $element-border-color;
+}
+
+.bottom-margin {
+    margin-bottom: 3rem;
+}
+
+.centered-contents {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.centered-contents-bordered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid $element-border-color;
+    border-radius: 1rem;
+    padding: 0.5rem;
+}
+
+.default-table {
+    border: 1px solid $default-table-border-color;
+    border-collapse: collapse;
+    margin: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.default-thead {
+    border: 1px solid green;
+}
+
+.default-thead-th {
+    border: 1px solid $default-table-border-color;
+    padding: 0.75rem;
+}
+
+.default-table-row {
+    border: 1px solid $default-table-border-color;
+    background-color: $default-table-row-color;
+}
+
+.default-table-row:nth-child(even) {
+    background-color: $default-table-row-color-alt;
+}
+
+.default-table-cell {
+    border: 1px solid $default-table-border-color;
+    padding: 0.5rem;
+    text-align: center;
+}
+
+.default-table-icon {
+    max-width: 2rem;
+    max-height: 2rem;
+    padding: 0.5rem;
+    border: 1px solid transparent;
+    border-radius: 20%;
+}
+
+.default-table-icon:hover,
+.default-table-icon:focus {
+    border: 1px solid $default-table-border-color;
+}
+
+.default-link {
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-family: Arial, sans-serif;
+    color: $default-link-color;
+    border: 0;
+    border-bottom: 1px solid transparent;
+    width: fit-content;
+}
+
+.default-link:hover,
+.default-link:focus {
+    color: $default-link-color-alt;
+    border-bottom: 1px solid $default-link-color-alt;
+}
+
+.default-input {
+    min-width: 5rem;
+    max-width: 15rem;
+    margin-bottom: 0.5rem;
+    outline: none;
+    background-color: transparent;
+    border: 2px solid transparent;
+    border-bottom: 2px solid $default-button-color;
+    color: $default-button-color;
+    border-radius: 5px;
+    padding: 3px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.default-input:hover,
+.default-input:focus {
+    border-color: $default-button-color;
+}
+
+.default-button {
+    min-width: 5rem;
+    max-width: 15rem;
+    margin-bottom: 0.5rem;
+    background-color: transparent;
+    border: 2px solid $default-button-color;
+    color: $default-button-color;
+    border-radius: 5px;
+    padding: 3px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.default-button:hover,
+.default-button:focus {
+    border-color: $default-button-color;
+    background-color: $default-button-color;
+    color: $default-button-color-alt;
 }

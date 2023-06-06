@@ -4,30 +4,19 @@
     General
    =============*/
 
-$default-text-color: rgb(0, 0, 0);
-$body-color: rgb(95, 210, 255);
-
-$navigation-background-color: rgb(247, 247, 247);
-$navigation-border-color: rgb(207, 207, 207);
-
-$nav-link-color: rgb(0, 89, 255);
-$nav-link-color-alt: rgb(35, 193, 255);
-
-$login-button-color: rgb(0, 89, 255);
-$login-button-color-alt: rgb(255, 255, 255);
-
-$dialog-background-color: rgb(247, 247, 247);
-$dialog-border-color: rgb(35, 193, 255);
-
 $login-form-background: rgb(247, 247, 247);
 $login-form-border-color: rgb(170, 170, 170);
 
-$footer-color: rgb(247, 247, 247);
-
 html {
-    font-size: 18px;
+    font-size: 16px;
     color: $default-text-color;
     margin: 0;
+}
+
+@media (min-width: $screen-break-small-medium) {
+    html {
+        font-size: 18px;
+    }
 }
 
 body {
@@ -47,7 +36,7 @@ body {
 .nav-page-link {
     text-decoration: none;
     font-family: Arial, sans-serif;
-    color: $nav-link-color;
+    color: $default-link-color;
 }
 
 .nav-username-display,
@@ -102,8 +91,8 @@ body {
 //=== Navigation ===//
 
 .navigation {
-    background-color: $navigation-background-color;
-    border-bottom: 1px solid $navigation-border-color;
+    background-color: $element-background-color;
+    border-bottom: 1px solid $element-border-color;
     margin-bottom: 2rem;
 }
 
@@ -133,14 +122,14 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-bottom: 1px solid $navigation-border-color;
+    border-bottom: 1px solid $element-border-color;
 }
 
 @media (min-width: $screen-break-small-medium) {
     .nav-icon-wrapper {
         width: 300px;
         min-width: 300px;
-        border-right: 1px solid $navigation-border-color;
+        border-right: 1px solid $element-border-color;
         border-bottom: 1px solid transparent;
     }
 }
@@ -180,8 +169,8 @@ body {
 .nav-page-link:hover,
 .nav-page-link:focus {
     outline: none;
-    color:$nav-link-color-alt;
-    border-bottom: 1px solid $nav-link-color-alt;
+    color:$default-link-color-alt;
+    border-bottom: 1px solid $default-link-color-alt;
 }
 
 //=== Navigation, username and login button ===//
@@ -194,13 +183,13 @@ body {
     align-items: center;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
-    border-top: 1px solid $navigation-border-color;
+    border-top: 1px solid $element-border-color;
 }
 
 @media (min-width: $screen-break-small-medium) {
     .nav-login {
         width: fit-content;
-        border-left: 1px solid $navigation-border-color;
+        border-left: 1px solid $element-border-color;
         border-top: 1px solid transparent;
     }
 }
@@ -212,18 +201,18 @@ body {
 
 .nav-login-button {
     margin: 0.3rem;
-    background-color: $navigation-background-color;
-    border: 2px solid $login-button-color;
+    background-color: $element-background-color;
+    border: 2px solid $default-button-color;
     border-radius: 5px;
     padding: 0.3rem;
-    color: $login-button-color;
+    color: $default-button-color;
 }
 
 .nav-login-button:hover,
 .nav-login-button:focus {
     outline: none;
-    background-color: $login-button-color;
-    color: $login-button-color-alt;
+    background-color: $default-button-color;
+    color: $default-button-color-alt;
 }
 
 .nav-login-button:hover {
@@ -285,8 +274,8 @@ body {
 //=== Login form ===//
 
 .login-form {
-    background-color: $login-form-background;
-    border: 3px solid $login-form-border-color;
+    background-color: $element-background-color;
+    border: 3px solid $element-border-color;
     padding: 0.5rem;
     display: flex;
     flex-direction: column;
@@ -302,13 +291,13 @@ body {
 .login-form input {
     outline: none;
     border: 3px solid transparent;
-    border-bottom: 3px solid $login-form-border-color;
+    border-bottom: 3px solid $element-border-color;
     background-color: transparent;
 }
 
 .login-form input:hover,
 .login-form input:focus {
-    border: 3px solid $login-form-border-color;
+    border: 3px solid $element-border-color;
     border-radius: 4px;
 }
 
@@ -320,7 +309,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100px;
-    background-color: $footer-color;
+    background-color: $element-background-color;
 }
 
 @media (min-width: $screen-break-medium-large) {

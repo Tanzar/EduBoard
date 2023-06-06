@@ -22,7 +22,7 @@ class ArticleCache {
      */
     public function getLatest() : array {
         $date = new DateTime();
-        $key = sprintf("articles-latest-%d", $date->format('Y-m-d'));
+        $key = sprintf("articles-latest-%d", $date->format('Y-m-d-H:i:s'));
         
         return $this->cache->get($key, function(ItemInterface $item){
             $item->expiresAfter(60);
@@ -35,7 +35,7 @@ class ArticleCache {
      */
     public function getPage(int $page) : array {
         $date = new DateTime();
-        $key = sprintf("articles-page-%d-%d", $page, $date->format('Y-m-d'));
+        $key = sprintf("articles-page-%d-%d", $page, $date->format('Y-m-d-H:i:s'));
 
         return $this->cache->get($key, function(ItemInterface $item) use ($page) {
             $item->expiresAfter(60);

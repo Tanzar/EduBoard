@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="styled-container bottom-margin">
+        <div class="centered-contents">
+            <form action="{{ path('admin_users') }}" method="GET" class="centered-contents-bordered">
+                <div>
+                    <label for="page">Strona: </label> 
+                    <select name="page" id="page" class="default-input">
+                        {% for i in range(1, pagesCount) %}
+                            <option value="{{ i }}" {% if page == i %}
+                                selected
+                            {% endif %}>{{ i }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div>
+                    <label for="active">Stan: </label> 
+                    <select name="active" id="active" class="default-input">
+                        <option value="-1" {% if active == -1 %} selected="selected" {% endif %}>Wszyscy</option>
+                        <option value="1" {% if active == 1 %} selected="selected" {% endif %}>Aktywni</option>
+                        <option value="0" {% if active == 0 %} selected="selected" {% endif %}>Nieaktywni</option>
+                    </select>
+                </div>
+                <input type="submit" value="Wybierz" class="default-button">
+            </form>
+            <table class="default-table">
+                <thead>
+                    <tr class="default-thead">
+                        <th class="default-thead-th">ID</th>
+                        <th class="default-thead-th">Aktywny</th>
+                        <th class="default-thead-th">Email</th>
+                        <th class="default-thead-th">Akcje</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                        <tr class="default-table-row">
+                            <td class="default-table-cell">{{ user.id }}</td>
+                            <td class="default-table-cell">
+                                {% if user.active == 1 %}
+                                    Tak
+                                {% else %}
+                                    Nie
+                                {% endif %}
+                            </td>
+                            <td class="default-table-cell">{{ user.email }}</td>
+                            <td class="default-table-cell">
+                                <a href="{{ path("index") }}"><img class="default-table-icon" src="{{ asset('build/images/edit.fc4394c5.png')}}" alt="Edit"></a>
+                                <a href="{{ path("index") }}"><img class="default-table-icon" src="{{ asset('build/images/bin.b56bcb88.png')}}" alt="Edit"></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

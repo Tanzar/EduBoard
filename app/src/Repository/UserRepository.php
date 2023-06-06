@@ -56,28 +56,49 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->save($user, true);
     }
 
-//    /**
-//     * @return User[] Returns an array of User objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('u')
-//            ->andWhere('u.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('u.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+   /**
+     * @return User[] Returns an array of User objects
+     */
+    public function getPage(int $page = 1, int $count = 1) : array {
+        $users = $this->createQueryBuilder('u')
+            ->orderBy('u.surname', 'ASC')
+            ->getQuery()
+            ->getResult();
+        $page = ($page < 1) ? 1 : $page;
+        $count = ($count < 1) ? 1 : $count;
+        $startIndex = ($page - 1) * $count;
+        return array_slice($users, $startIndex, $count);
+    }
 
-//    public function findOneBySomeField($value): ?User
-//    {
-//        return $this->createQueryBuilder('u')
-//            ->andWhere('u.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    /**
+     * @return User[] Returns an array of User objects
+     */
+    public function getPageOfActive(int $page = 1, int $count = 1) : array {
+        $users = $this->createQueryBuilder('u')
+            ->orderBy('u.surname', 'ASC')
+            ->andWhere('u.active = :active')
+            ->setParameter('active', 1)
+            ->getQuery()
+            ->getResult();
+        $page = ($page < 1) ? 1 : $page;
+        $count = ($count < 1) ? 1 : $count;
+        $startIndex = ($page - 1) * $count;
+        return array_slice($users, $startIndex, $count);
+    }
+
+    /**
+     * @return User[] Returns an array of User objects
+     */
+    public function getPageOfInactive(int $page = 1, int $count = 1) : array {
+        $users = $this->createQueryBuilder('u')
+            ->orderBy('u.surname', 'ASC')
+            ->andWhere('u.active = :active')
+            ->setParameter('active', 0)
+            ->getQuery()
+            ->getResult();
+        $page = ($page < 1) ? 1 : $page;
+        $count = ($count < 1) ? 1 : $count;
+        $startIndex = ($page - 1) * $count;
+        return array_slice($users, $startIndex, $count);
+    }
 }

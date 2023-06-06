@@ -2,17 +2,9 @@
 
 namespace App\Controller;
 
-use App\Uploaders\FileUploader;
-use App\Uploaders\ImageUploader;
-use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Contracts\Cache\CacheInterface;
-use Symfony\Contracts\Cache\ItemInterface;
 
 class IndexController extends AbstractController {
 
@@ -22,14 +14,29 @@ class IndexController extends AbstractController {
         return $this->render('index.html.twig');
     }
 
-    #[Route('/date', name: 'date')]
-    public function date(CacheInterface $cache) {
-        $date = $cache->get('date', function(ItemInterface $item) {
-            $item->expiresAfter(60);
-            return new DateTime();
-        });
-        return new Response($date->format('e: Y-m-d h:i:s'));
+    #[Route('/admin', name: 'admin')]
+    public function mainAdminPage() {
+        return $this->render('admin/main.html.twig', []);
     }
+
+    #[Route('/classroom', name: 'classroom')]
+    public function mainClassroomPage() {
+        return $this->render('classroom/main.html.twig');
+    }
+
+    #[Route('/messenger', name: 'messenger')]
+    public function mainMessengerPage() {
+        return $this->render('messenger/main.html.twig', []);
+    }
+
+    #[Route('/schedule', name: 'schedule')]
+    public function mainSchedulePage() {
+        return $this->render('schedule/main.html.twig', []);
+    }
+
+
+
+
 
     #[Route('/test', name: 'test')]
     public function test() {

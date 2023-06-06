@@ -1,5 +1,16 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    {{ encore_entry_link_tags('admin_main') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('admin_main') }}
+{% endblock %}
+
+
 {% block body %}
-    Admin
+    <div class="admin-links">
+        <a class="admin-panel-link" href="{{ path('admin_users') }}">Użytkownicy</a>
+    </div>
 {% endblock %}

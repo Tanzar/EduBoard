@@ -35,6 +35,7 @@ class ArticleRepositoryTest extends DatabaseDependantTestCase {
 
     private function setUpUser() : User {
         $user = new User();
+        $user->setActive(true);
         $user->setEmail('test@mail.com');
         $user->setPassword('haslo');
         $user->setName('Me');
