@@ -68,6 +68,19 @@ $screen-break-small-medium: 600px;
     border-collapse: collapse;
     margin: 0.5rem;
     margin-bottom: 0.5rem;
+    font-size: 0.6rem;
+}
+
+@media (min-width: $screen-break-small-medium) {
+    .default-table {
+        font-size: 0.65rem;
+    }
+}
+
+@media (min-width: $screen-break-medium-large) {
+    .default-table {
+        font-size: 1rem;
+    }
 }
 
 .default-thead {
@@ -161,4 +174,60 @@ $screen-break-small-medium: 600px;
     border-color: $default-button-color;
     background-color: $default-button-color;
     color: $default-button-color-alt;
+}
+
+.default-form-row {
+    margin: 0.5rem;
+}
+
+.default-form-row label {
+    width: 6rem;
+    display: inline-block;
+}
+
+.default-form-row input,
+.default-form-row select {
+    width: 15rem;
+    max-width: 15rem;
+    margin-bottom: 0.5rem;
+    outline: none;
+    background-color: transparent;
+    border: 2px solid transparent;
+    border-bottom: 2px solid $default-button-color;
+    color: $default-button-color;
+    border-radius: 5px;
+    padding: 3px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.default-form-row input:hover,
+.default-form-row input:focus,
+.default-form-row select:hover,
+.default-form-row select:focus {
+    border-color: $default-button-color;
+}
+
+.default-form-row input:invalid,
+.default-form-row select:invalid {
+    border-color: red;
+}
+
+.default-form-errors ul {
+    margin: 0;
+    margin-top: 0.2rem;
+    margin-bottom: 1rem;
+    font-size: 0.7rem;
+    color: red;
+    list-style: none;
+    padding: 0;
+}
+
+.default-form-errors li::before {
+    content: 'ERROR';
+    color: white;
+    background-color: red;
+    border-radius: 10%;
+    padding: 0.1rem;
+    margin-right: 0.2rem;
 }

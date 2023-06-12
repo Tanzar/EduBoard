@@ -12,6 +12,8 @@ class UsersCache {
 
     private int $usersPerPage = 20;
 
+    private int $timer = 10;
+
     public function __construct(
         private CacheInterface $cache,
         private UserRepository $userRepository
@@ -28,14 +30,14 @@ class UsersCache {
         if($page === 0){
             $key = 'users-all';
             return $this->cache->get($key, function(ItemInterface $item){
-                $item->expiresAfter(60);
+                $item->expiresAfter($this->timer);
                 return $this->userRepository->findAll();
             });
         }
         else{
             $key = 'users-all-page-' . $page;
             return $this->cache->get($key, function(ItemInterface $item) use ($page){
-                $item->expiresAfter(60);
+                $item->expiresAfter($this->timer);
                 return $this->userRepository->getPage($page, $this->usersPerPage);
             });
         }
@@ -51,14 +53,14 @@ class UsersCache {
         if($page === 0){
             $key = 'users-active';
             return $this->cache->get($key, function(ItemInterface $item){
-                $item->expiresAfter(60);
+                $item->expiresAfter($this->timer);
                 return $this->userRepository->findBy(['active' => 1]);
             });
         }
         else{
             $key = 'users-active-page-' . $page;
             return $this->cache->get($key, function(ItemInterface $item) use ($page){
-                $item->expiresAfter(60);
+                $item->expiresAfter($this->timer);
                 return $this->userRepository->getPageOfActive($page, $this->usersPerPage);
             });
         }
@@ -69,14 +71,14 @@ class UsersCache {
         if($page === 0){
             $key = 'users-inactive';
             return $this->cache->get($key, function(ItemInterface $item){
-                $item->expiresAfter(60);
+                $item->expiresAfter($this->timer);
                 return $this->userRepository->findBy(['active' => 0]);
             });
         }
         else{
             $key = 'users-inactive-page-' . $page;
             return $this->cache->get($key, function(ItemInterface $item) use ($page){
-                $item->expiresAfter(60);
+                $item->expiresAfter($this->timer);
                 return $this->userRepository->getPageOfInactive($page, $this->usersPerPage);
             });
         }

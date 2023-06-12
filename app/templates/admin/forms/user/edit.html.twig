@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <div class="styled-container bottom-margin centered-contents">
+        {{ form_start(registrationForm) }}
+            <div class="default-form-row">
+                {{ form_label(registrationForm.email, 'Email:') }}
+                {{ form_widget(registrationForm.email) }}
+                <div class="default-form-errors">
+                    {{ form_errors(registrationForm.email) }}
+                </div>
+            </div>
+            <div class="default-form-row">
+                {{ form_label(registrationForm.name, 'Imie:') }}
+                {{ form_widget(registrationForm.name) }}
+                <div class="default-form-errors">
+                    {{ form_errors(registrationForm.name) }}
+                </div>
+            </div>
+            <div class="default-form-row">
+                {{ form_label(registrationForm.surname, 'Nazwisko:') }}
+                {{ form_widget(registrationForm.surname) }}
+                <div class="default-form-errors">
+                    {{ form_errors(registrationForm.surname) }}
+                </div>
+            </div>
+            <div class="default-form-row">
+                {{ form_label(registrationForm.phone, 'Tel.') }}
+                {{ form_widget(registrationForm.phone) }}
+                <div class="default-form-errors">
+                    {{ form_errors(registrationForm.phone) }}
+                </div>
+            </div>
+            <div class="default-form-row">
+                {{ form_label(registrationForm.address, 'Adres:') }}
+                {{ form_widget(registrationForm.address) }}
+                <div class="default-form-errors">
+                    {{ form_errors(registrationForm.address) }}
+                </div>
+            </div>
+            <div class="default-form-row">
+                {{ form_label(registrationForm.roles, 'Typ:') }}
+                {{ form_widget(registrationForm.roles) }}
+                <div class="default-form-errors">
+                    {{ form_errors(registrationForm.roles) }}
+                </div>
+            </div>
+            <div class="centered-contents">
+                <button type="submit" class="default-button">Zapisz</button>
+            </div>
+        {{ form_end(registrationForm) }}
+    </div>
+{% endblock %}

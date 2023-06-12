@@ -24,12 +24,15 @@
                 </div>
                 <input type="submit" value="Wybierz" class="default-button">
             </form>
+            <a href="{{ path('admin_register') }}"><button class="default-button">Nowy</button></a>
             <table class="default-table">
                 <thead>
                     <tr class="default-thead">
                         <th class="default-thead-th">ID</th>
                         <th class="default-thead-th">Aktywny</th>
                         <th class="default-thead-th">Email</th>
+                        <th class="default-thead-th">Imie</th>
+                        <th class="default-thead-th">Nazwisko</th>
                         <th class="default-thead-th">Akcje</th>
                     </tr>
                 </thead>
@@ -45,9 +48,11 @@
                                 {% endif %}
                             </td>
                             <td class="default-table-cell">{{ user.email }}</td>
+                            <td class="default-table-cell">{{ user.name }}</td>
+                            <td class="default-table-cell">{{ user.surname }}</td>
                             <td class="default-table-cell">
-                                <a href="{{ path("index") }}"><img class="default-table-icon" src="{{ asset('build/images/edit.fc4394c5.png')}}" alt="Edit"></a>
-                                <a href="{{ path("index") }}"><img class="default-table-icon" src="{{ asset('build/images/bin.b56bcb88.png')}}" alt="Edit"></a>
+                                <a href="{{ path("admin_user_edit", { id: user.id}) }}"><img class="default-table-icon" src="{{ asset('build/images/edit.fc4394c5.png')}}" alt="Edit"></a>
+                                <a href="{{ path("admin_user_delete", { id: user.id}) }}"><img class="default-table-icon" src="{{ asset('build/images/bin.b56bcb88.png')}}" alt="Delete"></a>
                             </td>
                         </tr>
                     {% endfor %}
